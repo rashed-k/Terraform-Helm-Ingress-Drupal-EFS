@@ -1,0 +1,12 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+parameters:
+  archiveOnDelete: "true"
+  # run "id -G <username>"
+  # gidMin: "5555"
+  # gidMax: "5555"
+  # gidAllocate: "true"

@@ -45,7 +45,7 @@ Once the file is pulled and unzipped, add ingress configuartion into values.yaml
 ingress:
   ## @param ingress.enabled Enable ingress controller resource
   ##
-  enabled: true 
+  enabled: true   <-------------------- TRUE
   ## DEPRECATED: Use ingress.annotations instead of ingress.certManager
   ## certManager: false
   ##
@@ -60,10 +60,10 @@ ingress:
   ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
   ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
   ##
-  ingressClassName: "nginx"
+  ingressClassName: "nginx"    <-----------------NGINX
   ## @param ingress.hostname Default host for the ingress resource
   ##
-  hostname: www.funapp.click
+  hostname: www.funapp.click    <--------------- Host
   ## @param ingress.path The Path to Drupal. You may need to set this to '/*' in order to use this
   ## with ALB ingress controllers.
   ##
@@ -85,7 +85,7 @@ As the helm chart provided by bitnami has Type Loadbalancer for Drupal Service, 
 service:
   ## @param service.type Kubernetes Service type
   ##
-  type: ClusterIP
+  type: ClusterIP   <-------------------- Change Type from Loadbalancer to ClusterIP
   ## @param service.ports.http Service HTTP port
   ## @param service.ports.https Service HTTPS port
   ##

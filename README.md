@@ -18,6 +18,19 @@ terraform apply
 
 ```
 
+# Helm - Nginx Ingress Controller 
+
+You can use the following command once helm is installed to deploy nginx ingress controller workloads (source -https://kubernetes.github.io/ingress-nginx/deploy/ ) -
+
+```
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+
+```
+
+
+
 
 
 

@@ -151,8 +151,10 @@ Create EFS
 - Name - EFS-Drupal  (Can be any name)
 - Virtual Private Cloud (VPC) - *EKS cluster VPC must be selected
 - Availability and durability - Regional or One Zone (Select according to use case)
+- Add security group of EKS cluster worker node to EFS. 
 
 </br >
+
 
 Once EFS is created copy any one IP address of file system in network. (It's always better do select the one in same availability zone.) Add IP addess in deployment.yaml file inside efs-privisoner folder
 

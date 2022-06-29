@@ -144,5 +144,66 @@ persistence:
   ## Default: nil.
 ```
 
+# AWS EFS configuration
+
+Create EFS
+
+- Name - EFS-Drupal  (Can be any name)
+- Virtual Private Cloud (VPC) - *EKS cluster VPC must be selected
+- Availability and durability - Regional or One Zone (Select according to use case)
+
+</br >
+
+Once EFS is created copy any one IP address of file system in network. (It's always better do select the one in same availability zone.) Add IP addess in deployment.yaml file inside efs-privisoner folder
+
+From the repository, deploy workloads for efs-provisioner from efs-provisioner and 
+
+```
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-client-provisioner
+  namespace: storage
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+      - name: nfs-client-provisioner
+        image: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+        volumeMounts:
+        - name: nfs-client-root
+          mountPath: /persistentvolumes
+        env:
+        - name: PROVISIONER_NAME
+          value: k8s-sigs.io/nfs-subdir-external-provisioner
+        - name: NFS_SERVER
+          value: 10.0.0.1                 <--------- Change the Value of IP address according to your EFS network
+        - name: NFS_PATH
+          value: /
+      volumes:
+      - name: nfs-client-root
+        nfs:
+          server: 10.0.0.1               <--------- Change the Value of IP address according to your EFS network
+          path: /
+```
+
+
+
+
+
+
+
+
 
 

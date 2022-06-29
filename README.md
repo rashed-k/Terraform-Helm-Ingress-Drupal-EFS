@@ -158,7 +158,7 @@ Create EFS
 
 Once EFS is created copy any one IP address of file system in network. (It's always better do select the one in same availability zone.) Add IP addess in deployment.yaml file inside efs-privisoner folder
 
-From the repository, deploy workloads for efs-provisioner from efs-provisioner and 
+From the repository, deploy workloads for efs-provisioner from efs-provisioner folder and make changes if required. 
 
 ```
 ---

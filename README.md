@@ -76,7 +76,7 @@ ingress:
 
 ```
 
-As the helm chart provided by bitnami has Type Loadbalancer for Drupal Service, If your use case needs ingress controller to control the traffic then based on this particular use case change the type = Loadbalancer - type = ClusterIP in the values.yaml file - 
+As the helm chart provided by bitnami has Type Loadbalancer for Drupal Service, If your use case needs ingress controller to control external traffic from external loadbalancer then based on this particular use case change the type = Loadbalancer - type = ClusterIP in the values.yaml file - 
 
 ```
 
@@ -109,7 +109,7 @@ service:
 
 ```
 
-From the chart pulled from bitnami/drupal, the persistance volume claim is configured to storageclass = gp2 (EBS) and accessmodes = ReadWriteOnce. Due to this configuration the pods of drupal application will not be able to scale up, as the requirement for scaling will need the following configuration - 
+From the chart pulled from bitnami/drupal, the persistence volume claim is configured to storageclass = gp2 (EBS) and accessmodes = ReadWriteOnce. Due to this configuration the pods of drupal application will not be able to scale up, as the requirement for scaling will need the following configuration - 
 
 ```
 persistence:
@@ -154,7 +154,7 @@ Create EFS
 
 </br >
 
-Once EFS is created copy any one IP address of file system in network. (It's always better do select the one in same availability zone.) Add IP addess in deployment.yaml file inside efs-privisoner folder
+Once EFS is created, copy any one IP address of file system in network. (It's always better do select the one in same availability zone.) Add IP addess in deployment.yaml file inside efs-privisoner folder
 
 From the repository, deploy workloads for efs-provisioner from efs-provisioner and 
 
